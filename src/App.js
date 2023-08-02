@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home';
+import {BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/Navbar';
+import CadastroVenda from './components/CadastroVenda';
+import CadastroProduto from './components/CadastroProduto';
+import CadastroVendedor from './components/CadastroVendedor';
+import Venda from './components/Venda';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+const App = () => {
+    return (
+      <BrowserRouter>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+        <Navbar />
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cadastrar-venda" element={<CadastroVenda />} />
+            <Route path="/cadastrar-produto" element={<CadastroProduto />} />
+            <Route path="/cadastrar-vendedor" element={<CadastroVendedor />} />
+            <Route path="/lista-venda" element={<Venda />} />
+        </Routes>
+    </BrowserRouter>
+    );
+  };
 export default App;

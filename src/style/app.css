@@ -1,0 +1,28 @@
+.width40 {
+    width: 40%;
+}
+
+.width20 {
+    width: 20%;
+}
+
+.display-center {
+    display: flex;
+    justify-content: center;
+}
+
+.margin-left-2 {
+    margin-left: 2%;
+}
+
+.margin-right-2 {
+    margin-right: 2%;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.margin-bottom-2 {
+    margin-bottom: 2%;
+}
