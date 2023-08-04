@@ -4,14 +4,14 @@ import '../style/app.css'
 
 const Navbar = () => {
   useEffect(() => {
-    // Initialize Materialize JS components
-    M.AutoInit();
+    const elem = document.querySelector('.sidenav');
+    M.Sidenav.init(elem, {});
   }, []);
 
   return (
     <nav>
       <div className="nav-wrapper blue darken-2">
-        <a href="#!" data-target="mobile-demo" className="sidenav-trigger">
+        <a href="/" data-target="mobile-demo" className="sidenav-trigger">
           <i className="material-icons">menu</i>
         </a>
         <ul className="hide-on-med-and-down center display-center ">
