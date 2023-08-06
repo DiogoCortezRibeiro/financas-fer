@@ -10,16 +10,24 @@ const Home = () => {
 
   useEffect(() => {
     return () => {
-      axios.get(process.env.REACT_APP_BASE_URL + '/api/product')
-        .then(res => {
-          setListProduct(res.data);
-        })
+      getAllProducts();
     }
   }, []);
 
-  const handleNotification = () => {
-    toast.success('Produto deletado com sucesso');
-  };
+  const getAllProducts = () => {
+    axios.get(process.env.REACT_APP_BASE_URL + '/api/product')
+    .then(res => {
+      setListProduct(res.data);
+    })
+  }
+
+  const deleteProduct = (id) => {
+    axios.delete(process.env.REACT_APP_BASE_URL + '/api/product/' + Number(id))
+      .then(res => {
+        toast.success('Produto deletada com sucesso');
+        getAllProducts();
+      })
+  }
 
   const handleFilterChange = (event) => {
     setFilterText(event.target.value.toLowerCase());
@@ -62,7 +70,7 @@ const Home = () => {
                       <i class="small material-icons">edit</i>
                     </button>
                   </Link>
-                  <button onClick={handleNotification} className="btn waves-effect waves-light red margin-left-2" type="submit" name="action">
+                  <button onClick={() => deleteProduct(product.id)} className="btn waves-effect waves-light red margin-left-2" type="submit" name="action">
                     <i className="small material-icons">delete</i>
                   </button>
                 </div>

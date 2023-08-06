@@ -18,7 +18,7 @@ const CadastroProduto = () => {
         setMeasure(res.data.measure);
       })
     }
-  }, []);
+  }, [id]);
 
 
   const saveProduct = async () => {  
@@ -26,6 +26,8 @@ const CadastroProduto = () => {
       if (!productIsValidate()) {
         return;
       }
+
+      console.log(mountToJson())
 
       await axios.post(process.env.REACT_APP_BASE_URL + '/api/product', mountToJson(), {headers: {'Content-Type': 'application/json'}})
       toast.success('Produto cadastrado com sucesso!');
@@ -41,21 +43,21 @@ const CadastroProduto = () => {
         id: id,
         name: name, 
         measure: measure,
-        quantity: quantity
+        quantity: Number(quantity)
       };
     }
 
     return {
       name: name, 
       measure: measure,
-      quantity: quantity
+      quantity: Number(quantity)
     };
   }
 
   const clear = () => {
     setMeasure('');
     setName('');
-    setQuantity('');
+    setQuantity(null);
   }
 
   const productIsValidate = () => {
@@ -100,7 +102,7 @@ const CadastroProduto = () => {
             <label className={measure ? 'active' : ''}>Medida</label>
           </div>
           <div className="input-field col s3">
-            <input type="text" value={quantity} onChange={handleChangeQuantity} />
+            <input type="number" value={quantity} onChange={handleChangeQuantity} />
             <label className={quantity ? 'active' : ''}>Quantidade</label>
           </div>
         </div>
